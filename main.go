@@ -16,7 +16,6 @@ const fileName string = "urls"
 const str string = "Go"
 
 func main() {
-	
 
 	urls, err := getAllUrls(fileName)
 	if err != nil {
@@ -33,8 +32,9 @@ func main() {
 		go func(i int) {
 			count, _ := getCountStringFromURL(urls[i], str)
 			<-ch
-			fmt.Printf("Count for %s : %v\n", urls[i], count)
+			fmt.Printf("Count for %s : %v\n", strings.ReplaceAll(urls[i], "\r", ""), count)
 			result += count
+
 			wg.Done()
 
 		}(i)
